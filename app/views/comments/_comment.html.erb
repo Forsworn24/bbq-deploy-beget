@@ -1,0 +1,23 @@
+<div class="buffer-bottom border border-2 m-2 bg-light rounded-3">
+
+  <p class="bg-light m-2 p-2 rounded-3 fw-bold fst-italic"><%= comment.body %></p>
+  <p>
+    <span>
+      <% if comment.user.present? %>
+          <%= render partial: 'users/user', object: comment.user %>
+      <% else %>
+        <p class="bg-secondary m-2 p-2 rounded-3 text-white fw-bold"><%= comment.user_name %></p>
+      <% end %>
+      
+      <p class="text-end mx-2 py-2 fw-bold">
+        <%= l comment.created_at, format: :short %>
+        <% if current_user_can_edit?(comment) %>
+          <%= link_to(
+                fa_icon('trash'), event_comment_path(comment.event, comment),
+                method: :delete, data: {confirm: t('.destroy_confirm')}
+            ) %>
+        <% end %>
+      </p>
+    </span>
+  </p>
+</div>

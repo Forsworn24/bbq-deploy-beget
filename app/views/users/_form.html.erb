@@ -1,0 +1,26 @@
+<%= form_for @user, html: {multipart: true} do |f| %>
+  <%= render partial: 'partials/form_errors', locals: {model: @user} %>
+
+  <div class="form-group mt-2">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group mt-2">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: 'form-control' %>
+  </div>
+
+  <div class="mt-2">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar, class: 'form-control' %>
+  </div>
+
+  <div class="form-group mt-2">
+    <%= f.submit t('views.buttons.save'), class: 'btn btn-primary' %>
+    или <%= link_to t('views.buttons.back'), :back %>
+    <div class="mt-2">
+      <%= link_to t('views.password.action'), edit_user_registration_path, class: 'btn btn-primary text-end' %>
+    </div>
+  </div>
+<% end %>

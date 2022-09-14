@@ -1,0 +1,144 @@
+ru:
+  app:
+    name: 'Шашлыки'
+  views:
+    users:
+      create:
+        title: 'Регистрация'
+        action: 'Зарегистрироваться'
+      login:
+        title: 'Вход'
+        action: 'Войти'
+      show:
+        hosted:
+          true: 'Организовал'
+          false: 'Пользователь пока не организовал ни одного события'
+      edit:
+        title: 'Редактирование профиля'
+        action: 'Редактировать профиль'
+      cancel:
+        title: 'Удаление профиля'
+        confirmation: 'Вы уверены, что хотите удалить свой профиль?'
+        action: 'Удалить аккаунт'
+      emails:
+        title: 'Еmail'
+      password:
+        current: 'Текущий пароль'
+        confirm: 'Подтверждение пароля'
+        edit:
+          title: 'Изменение пароля'
+          limit: 'символов минимум'
+        action: 'Изменить пароль'
+        forgot:
+          title: 'Восстановление пароля'
+          question: 'Забыли пароль?'
+        instructions:
+          show: 'Пожалуйста, введите свой адрес электронной почты, и мы вышлем вам ссылку для сброса вашего пароля.'
+          action: 'Отправить инструкции для сброса пароля'
+    events:
+      list:
+        title: 'События'
+      new:
+        title: 'Новое событие'
+        add: 'Создать событие'
+      edit:
+        title: 'Редактировать событие'
+        action: 'Изменить событие'
+      destroy:
+        action: 'Удалить событие'
+    links:
+      profile: 'Профиль'
+      logout: 'Выйти'
+      login: 'Войти'
+      register: 'Зарегистрироваться'
+    buttons:
+      save: 'Сохранить'
+      back: 'вернуться'
+      subscribe: 'Подписаться'
+    password:
+      action: 'Сменить пароль'
+    errors:
+      form_has: 'В вашей форме'
+      error:
+        one: '%{count} ошибка:'
+        few: '%{count} ошибки:'
+        many: '%{count} ошибок:'
+    confirmation:
+      action: 'Вы точно уверены?'
+  activerecord:
+    models:
+      user: 'Пользователь'
+      event: 'Событие'
+    attributes:
+      user:
+        email: 'Email'
+        name: 'Имя'
+        password: 'Пароль'
+        avatar: 'Аватар'
+        password_confirmation: 'Подтверждение пароля'
+      event:
+        title: 'Название'
+        address: 'Место проведения'
+        datetime: 'Дата и время'
+        description: 'Описание'
+        pincode: 'Пинкод доступа'
+    errors:
+      models:
+        subscription:
+          attributes:
+            user_email:
+              error_use_email: 'уже используется другим пользователем. Используйте другой email.'
+            user_id:
+              error_subscribe_on_yourself: 'не может быть подписан на своё событие'       
+  controllers:
+    events:
+      created: 'Вы создали новое мероприятие'
+      updated: 'Вы обновили мероприятие'
+      destroyed: 'Вы удалили мероприятие :('
+      wrong_pincode: 'Неверный пинкод!'
+    users:
+      updated: 'Вы обновили свой профиль'
+    comments:
+      destroyed: 'Комментарий удален'
+      created: 'Ваш комментарий добавлен'
+      error: 'Ошибка с комментарием'
+    subscriptions:
+      created: 'Вы подписаны на это событие'
+      destroyed: 'Участник отписан'
+      error: 'Подписка/отписка не сработала'
+  subscriptions:
+    subscription:
+      destroy_confirm: 'Вы уверены, что хотите удалить эту подписку?'
+  comments:
+    comment:
+      action: 'Отправить'
+      title: 'Текст'
+      destroy_confirm: 'Вы уверены, что хотите удалить этот комментарий?'
+  event_mailer:
+    comment:
+      title: 'Новый комментарий'
+      author: 'Автор'
+      event: 'Событие'
+      datetime: 'Состоится'
+      owner: 'Организатор'
+    subscription:
+      title: 'Новая подписка'
+      name: 'Имя'
+      email: 'Email'
+      author: 'Автор'
+      event: 'Событие'
+      datetime: 'Состоится'
+      owner: 'Организатор'
+    photos:
+      title: 'Добавлены новые фотографии'
+      event: 'Событие'
+      errors:
+        empty: "Вы не добавили фотографий для загрузки"
+        not_authorized: "Вы не авторизованы"
+  events:
+    show:
+      upload_photos: "Здесь вы можете добавить фотографии: "
+      photos: "Фотографии"
+  upload:
+    upload_button: "Загрузить"
+    upload_user: "Загружено пользователем "

@@ -1,0 +1,20 @@
+<div class="my-2 mx-2 bg-light p-2 rounded-3 border border-3">
+  <%= form_for [@event, comment] do |f| %>
+      <%= render partial: 'partials/form_errors', locals: {model: comment} %>
+
+      <div class="form-group">
+        <%= f.text_area :body, class: 'form-control' %>
+      </div>
+
+      <% unless user_signed_in? %>
+          <div class="form-group">
+            <%= f.label :user_name, t('activerecord.attributes.user.name') %>
+            <%= f.text_field :user_name, class: 'form-control' %>
+          </div>
+      <% end %>
+
+      <div class="actions mt-2 mb-2 text-end">
+        <%= f.submit t('comments.comment.action'), class: 'btn btn-primary' %>
+      </div>
+  <% end %>
+</div>

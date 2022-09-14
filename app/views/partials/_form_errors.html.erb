@@ -1,0 +1,19 @@
+<% errors = model.errors %>
+
+<% if errors.any? %>
+  <div class="alert alert-danger">   
+    <div class="d-flex bd-highlight lead">
+      <div class="p-2 w-100 bd-highlight">
+        <%= t('views.errors.form_has') %> <%= I18n.t('views.errors.error', count: errors.count) %>
+        <ul class="fs-6">
+          <% errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class=" flex-shrink-1 bd-highlight">
+        <button type="button" class="btn-close text-end" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    </div>    
+  </div>
+<% end %>

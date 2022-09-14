@@ -1,0 +1,50 @@
+<section class="vh-75 bg-image">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-75 pt-5">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Вход</h2>
+
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                
+                <%= render "devise/shared/error_messages", resource: resource %>
+                  
+                <%= render "devise/shared/error_messages", resource: resource %>
+
+                <div class="form-outline mb-4">
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-lg"  %>
+                  <%= f.label :email, class: "form-label" %>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <%= f.password_field :password, autocomplete: "current-password", class: "form-control form-control-lg" %>
+                  <%= f.label :password, "Пароль", class: "form-label" %>
+                </div>
+
+                <% if devise_mapping.rememberable? %>
+                  <div class="form-check">
+                    <%= f.check_box :remember_me, class: "form-check-input" %>
+                    <%= f.label :remember_me, "Запомнить меня", class: "form-check-label" %>
+                  </div>
+                <% end %>
+
+                <div class="d-flex justify-content-center">
+                  <%= f.submit "Войти",
+                    class: "btn btn-primary btn-block btn-lg gradient-custom-4 text-body" %>
+                </div>
+
+              <% end %>
+
+              <p class="text-center text-muted mt-5 mb-0">
+                <%= render "devise/shared/links" %>
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

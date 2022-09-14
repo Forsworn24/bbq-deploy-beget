@@ -1,0 +1,105 @@
+<div class="event">
+  <%= render partial: 'partials/form_errors', 
+    locals: {model: @new_subscription || @event.subscriptions.build} %>
+
+  <div class="event-info row m-2 event border border-5 rounded-3">
+    <div class="col-md-12">
+      <%= content_tag 'div', '', class: 'event-background',
+        style: "background-image: url(#{asset_path('event.jpg')})" %>
+
+      <div class="event-info-inner row">
+        <div class="col-md-6">
+          <div class="event-description">
+            <h1><%= @event.title %></h1>
+            <h3><%= l @event.datetime, format: :long %></h3>
+            <h3><small><%= link_to @event.address,
+                "https://yandex.ru/maps/?text=#{@event.address}" %></small></h3>
+            <p><%= @event.description %></p>
+          </div>
+          <% if current_user_can_edit?(@event) %>
+            <div class="my-2">
+              <%= link_to t('views.events.edit.action'), edit_event_path(@event),
+                class: 'btn btn-primary' %>
+            </div>
+            <div class="my-2">
+              <%= button_to t('views.events.destroy.action'), event_path(@event), 
+                data: { confirm: t('views.confirmation.action') },
+                method: :delete, class: "btn btn-danger" %>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-md-6 p-2">
+          <div id="map" data-address="<%= @event.address %>" style="width: 600px; height: 400px" class="border border-3 rounded-3"></div>
+        </div>
+      </div>  
+    </div>
+  </div>
+
+  <h2 class="mt-5 text-center"><%= t(".photos") %></h2>
+  <% if @event.photos.any? %>
+    <div class="d-flex flex-wrap bd-highlight mb-3" data-lightbox="example-set">
+      <% @event.photos.each do |photo| %>
+        <div class="mt-3 mb-1 mx-2">
+          <%= event_photo(photo.source, photo.user) %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if user_can_add_photo?(@event) %>
+    <div class="container d-flex mt-3">
+      <%= form_with url: event_photos_path(@event), multipart: true do |form| %>
+        <div class="mt-2">
+          <%= form.label t(".upload_photos") %>
+          <%= form.file_field :photos, class: 'form-control mt-2', multiple: true %>
+        </div>
+
+        <div class="actions mt-2 mb-2">
+          <%= form.submit t('upload.upload_button'), class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="event-comments buffer-top">
+          <%= render partial: 'comments/form',
+        locals: {comment: @new_comment || @event.comments.build} %>
+        <div class="buffer-both">
+          <%= render partial: 'comments/comment',
+            collection: @event.comments.except(@new_comment).order(created_at: :desc) %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="event-subscriptions border border-2 bg-light m-2 rounded-3">
+        <h4 class="p-2">Зовет:</h4>
+          <p><%= render partial: 'users/user', object: @event.user %></p>
+      </div>
+      <% if check_event_subscribe?(@event) %>
+      <div class="event-subscriptions border border-2 bg-light m-2 rounded-3">
+        <h4 class="p-2">Пойдут:</h4>
+        <div>
+          <p>
+          <%= render partial: 'subscriptions/subscription',
+            collection: @event.subscriptions.except(@new_subscription) %>
+          </p>
+        </div>
+      </div>
+      <% end %>
+      <% if current_user_can_subscribe?(@event) %>
+        <div class="event-subscription-form border border-2 bg-light m-2 rounded-3">
+          <h4 class="p-2">Я пойду:</h4>
+          <div class="p-2">
+            <%= render partial: 'subscriptions/form', locals: {
+              subscription: @new_subscription || @event.subscriptions.build
+            } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= javascript_pack_tag 'map' %>

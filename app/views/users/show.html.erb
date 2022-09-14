@@ -1,0 +1,31 @@
+<div class="text-center mt-2">
+  <h1><%= @user.name %></h1>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <%= user_avatar(@user) %>
+      </div>
+    </div>
+  </div>
+
+  <% if @user == current_user %>
+  <p class="mt-4">
+    <%= link_to t('views.users.edit.action'), edit_user_path(@user),
+      class: 'btn btn-primary' %>
+  </p>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <% if @user.events.any? %>
+        <h3><%= t('views.users.show.hosted.true') %></h3>
+        <div class="row">
+          <%= render partial: 'events/event', collection: @user.events %>
+        </div>
+      <% else %>
+        <p class="buffer-top"><%= t('views.users.show.hosted.false') %></p>
+      <% end %>
+    </div>
+  </div>
+</div>

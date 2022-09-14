@@ -1,0 +1,17 @@
+<div class="col bg-secondary text-white p-2 m-2 rounded-3 text-center">
+
+  <% if subscription.user.present? %>
+    <%= render partial: 'users/user', object: subscription.user %>
+  <% else %>
+    <strong><%= subscription.user_name %></strong>
+  <% end %>
+  
+  <% if current_user_can_edit?(subscription) %>
+    <%= link_to(
+            fa_icon('times'),
+            event_subscription_path(subscription.event, subscription),
+            method: :delete,
+            data: {confirm: t('.destroy_confirm')}
+        ) %>
+  <% end %>
+</div>

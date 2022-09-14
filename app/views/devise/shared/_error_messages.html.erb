@@ -1,0 +1,15 @@
+<% if resource.errors.any? %>  
+    <div class="d-flex bd-highlight lead alert alert-danger alert-dismissible">
+      <div class="w-100 bd-highlight">
+        <%= t('views.errors.form_has') %> <%= I18n.t('views.errors.error', count: resource.errors.count) %>
+        <ul class="fs-5">
+          <% resource.errors.full_messages.each do |message| %>
+            <li class="ms-2"><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="flex-shrink-1 bd-highlight">
+        <button type="button" class="btn-close text-end" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    </div>    
+<% end %>

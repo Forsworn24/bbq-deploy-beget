@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= t('app.name') %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=4f1f37ea-db77-4861-8ab8-8d25f65816bd&lang=ru_RU" type="text/javascript">
+    </script>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <%= render 'partials/nav' %>
+
+    <% if notice.present? %>
+    <div class="container mt-2">
+      <div class="alert alert-success" role="alert">
+        <div class="d-flex bd-highlight fs-5 lead">
+          <div class="p-2 w-100 bd-highlight">
+            <%= notice %>
+          </div>
+          <div class="flex-shrink-1 bd-highlight">
+            <button type="button" class="btn-close text-end" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    
+    <div class="container">
+      <% if flash[:alert].present? %>
+        <div class="container">
+          <div class="alert alert-danger" role="alert">
+            <div class="d-flex bd-highlight lead">
+              <div class="p-2 w-100 bd-highlight">
+                <%= content_tag(:div, flash[:alert], :id => "flash_alert") %>
+              </div>
+              <div class=" flex-shrink-1 bd-highlight">
+                <button type="button" class="btn-close text-end" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
+</html>
