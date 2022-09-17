@@ -4,7 +4,7 @@
     <title><%= t('app.name') %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=4f1f37ea-db77-4861-8ab8-8d25f65816bd&lang=ru_RU" type="text/javascript">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=<%= Rails.application.credentials.dig(:ymaps, :api_key) %>&lang=ru_RU">
     </script>
 
     <%= csrf_meta_tags %>
