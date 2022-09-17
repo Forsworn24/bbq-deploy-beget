@@ -12,7 +12,7 @@ Rails.application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
 
-  config.action_mailer.default_url_options = { :host => "https://forsworn-bbq.herokuapp.com/" }
+  config.action_mailer.default_url_options = { :host => "http://mymegabarbecue.store/" }
   config.action_mailer.delivery_method = :mailjet
 
   # Full error reports are disabled and caching is turned on.
@@ -72,7 +72,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.raise_delivery_errors = true
 
-  config.action_mailer.delivery_method
+  # config.action_mailer.delivery_method
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
