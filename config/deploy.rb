@@ -14,7 +14,7 @@ set :deploy_to, '/home/deploy/www'
 
 #set :rvm_map_bins, %w{gem rake ruby rails bundle}
 # Файлы, которые лежат вне репозитория
-append :linked_files, 'config/database.yml', 'config/secrets.yml'
+append :linked_files, 'config/database.yml', 'config/master.key'
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads'
 
 
