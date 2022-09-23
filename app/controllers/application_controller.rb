@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::Base
+  include Pundit::Authorization
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :current_user_can_edit?
   helper_method :current_user_can_subscribe?
@@ -24,5 +28,16 @@ class ApplicationController < ActionController::Base
 
   def user_can_add_photo?
     current_user.present?
+  end
+
+  def pundit_user
+    UserContext.new(current_user, cookies, params[:pincode])
+  end
+
+  private
+
+  def user_not_authorized
+    flash[:alert] = t('pundit.not_authorized')
+    redirect_to(request.referrer || root_path)
   end
 end

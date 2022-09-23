@@ -142,3 +142,5 @@ ru:
   upload:
     upload_button: "Загрузить"
     upload_user: "Загружено пользователем "
+  pundit:
+    not_authorized: 'Доступ закрыт'

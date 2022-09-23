@@ -15,6 +15,7 @@ gem 'net-smtp', require: false
 gem 'net-imap', require: false
 gem 'net-pop', require: false
 gem 'puma', '~> 5.0'
+gem 'pundit', '~> 2.2'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.4'
 gem 'rails-i18n', '~> 6.0'
 gem 'sass-rails', '>= 6'
@@ -29,6 +30,7 @@ end
 
 group :development, :test do
   gem 'debug', platforms: %i[ mri mingw x64_mingw ]
+  gem 'factory_bot_rails'
   gem 'sqlite3'
   gem "letter_opener"
 end
@@ -43,4 +45,6 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
   gem 'spring'
+  gem 'rspec-rails'
+  gem 'rspec-core'
 end
