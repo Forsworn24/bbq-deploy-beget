@@ -53,7 +53,7 @@ Rails.application.configure do
 
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
-  config.log_level = :info
+  config.log_level = :warn
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
@@ -64,6 +64,9 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "bbq_rails6_bs5_production"
+
+  config.active_job.queue_adapter = :resque
+  config.active_job.queue_name_prefix = "bbq_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
 

@@ -17,19 +17,26 @@ class PhotosController < ApplicationController
       @event.photos.create(user: current_user, source: photo)
     end
 
-    notify_subscribers(new_photos)
+    new_photos.map do |photo|
+      PhotoNotifierJob.perform_later(all_emails, photo)
+    end
+    #PhotoNotifierJob.perform_later(all_emails, photo)
+    #notify_subscribers(new_photos)
     redirect_to @event
   end
 
-  def notify_subscribers(new_photos)
-    emails = (@event.subscribers.map(&:email) + 
-                @event.subscriptions&.pluck(:user_email).compact +            
-                [@event.user.email]) - 
-                [new_photos.first.user.email]
-    emails&.each do |email|
-      EventMailer.photos(new_photos, email).deliver_now
-    end
+  def all_emails
+    @event.subscriptions.map(&:user_email) + [@event.user.email] - [current_user&.email]
   end
+  #def notify_subscribers(new_photos)
+  #  emails = (@event.subscribers.map(&:email) + 
+  #              @event.subscriptions&.pluck(:user_email).compact +            
+  #              [@event.user.email]) - 
+  #              [new_photos.first.user.email]
+  #  emails&.each do |email|
+  #    EventMailer.photos(new_photos, email).deliver_now
+  #  end
+  #end
 
   def set_event
     @event = Event.find(params[:event_id])
