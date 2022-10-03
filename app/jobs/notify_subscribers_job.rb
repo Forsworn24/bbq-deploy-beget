@@ -7,7 +7,7 @@ class NotifySubscribersJob < ApplicationJob
 
     case record
     when Comment
-      all_emails.each { |email| EventMailer.comment(record, email).deliver_now }
+      all_emails.each { |email| EventMailer.comment(event, record, email).deliver_now }
     when Photo
       all_emails.each { |email| EventMailer.photo(record, email).deliver_now }
     end
