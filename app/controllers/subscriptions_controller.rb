@@ -15,8 +15,8 @@ class SubscriptionsController < ApplicationController
     @new_subscription.user = current_user
     
     if @new_subscription.save
-
-      SubscriptionNotifierJob.perform_later(@event, @new_subscription)
+      EventMailer.subscription(@event, @new_subscription).deliver_later
+      #SubscriptionNotifierJob.perform_later(@event, @new_subscription)
       #EventMailer.subscription(@event, @new_subscription).deliver_now
 
       redirect_to @event, notice: I18n.t('controllers.subscriptions.created')

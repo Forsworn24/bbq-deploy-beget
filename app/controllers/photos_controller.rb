@@ -18,16 +18,17 @@ class PhotosController < ApplicationController
     end
 
     new_photos.map do |photo|
-      PhotoNotifierJob.perform_later(all_emails, photo)
+      NotifySubscribersJob.perform_later(photo)
+      #PhotoNotifierJob.perform_later(all_emails, photo)
     end
     #PhotoNotifierJob.perform_later(all_emails, photo)
     #notify_subscribers(new_photos)
     redirect_to @event
   end
 
-  def all_emails
-    @event.subscriptions.map(&:user_email) + [@event.user.email] - [current_user&.email]
-  end
+  #def all_emails
+  #  @event.subscriptions.map(&:user_email) + [@event.user.email] - [current_user&.email]
+  #end
   #def notify_subscribers(new_photos)
   #  emails = (@event.subscribers.map(&:email) + 
   #              @event.subscriptions&.pluck(:user_email).compact +            
