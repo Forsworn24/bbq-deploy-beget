@@ -16,8 +16,6 @@ class SubscriptionsController < ApplicationController
     
     if @new_subscription.save
       EventMailer.subscription(@event, @new_subscription).deliver_later
-      #SubscriptionNotifierJob.perform_later(@event, @new_subscription)
-      #EventMailer.subscription(@event, @new_subscription).deliver_now
 
       redirect_to @event, notice: I18n.t('controllers.subscriptions.created')
     else
