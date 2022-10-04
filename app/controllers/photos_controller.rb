@@ -16,11 +16,12 @@ class PhotosController < ApplicationController
     new_photos = params[:photos].map do |photo|
       @event.photos.create(user: current_user, source: photo)
     end
-
-    new_photos.map do |photo|
-      NotifySubscribersJob.perform_later(photo)
+    
+    NotifySubscribersJob.perform_later(new_photos.first)
+    #new_photos.map do |photo|
+    #  NotifySubscribersJob.perform_later(photo)
       #PhotoNotifierJob.perform_later(all_emails, photo)
-    end
+    #end
     #PhotoNotifierJob.perform_later(all_emails, photo)
     #notify_subscribers(new_photos)
     redirect_to @event
