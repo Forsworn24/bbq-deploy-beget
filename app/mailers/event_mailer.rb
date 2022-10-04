@@ -15,7 +15,7 @@ class EventMailer < ApplicationMailer
   end
 
   def photo(new_photo, email)
-    @photos = new_photo
+    @photo = new_photo
     @event = new_photo.event
 
     mail to: email, subject: "Новые фотографии в событии #{@event.title}"
