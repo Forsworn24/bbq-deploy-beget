@@ -17,7 +17,7 @@ class PhotosController < ApplicationController
       @event.photos.create(user: current_user, source: photo)
     end
     
-    NotifySubscribersJob.perform_later(new_photos.first)
+    NotifySubscribersJob.perform_now(new_photos.first)
     #new_photos.map do |photo|
     #  NotifySubscribersJob.perform_later(photo)
       #PhotoNotifierJob.perform_later(all_emails, photo)

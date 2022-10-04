@@ -9,7 +9,7 @@ class NotifySubscribersJob < ApplicationJob
     when Comment
       all_emails.each { |email| EventMailer.comment(event, record, email).deliver_later }
     when Photo
-      all_emails.each { |email| EventMailer.photo(record, email).deliver_later }
+      all_emails.each { |email| EventMailer.photo(record, email).deliver_now }
     end
   end
 end

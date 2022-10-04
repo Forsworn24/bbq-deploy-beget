@@ -49,4 +49,6 @@ group :development do
   gem 'spring'
   gem 'rspec-rails'
   gem 'rspec-core'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
