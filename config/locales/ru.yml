@@ -116,12 +116,14 @@ ru:
       destroy_confirm: 'Вы уверены, что хотите удалить этот комментарий?'
   event_mailer:
     comment:
+      subject: "Новый комментарий в"
       title: 'Новый комментарий'
       author: 'Автор'
       event: 'Событие'
       datetime: 'Состоится'
       owner: 'Организатор'
     subscription:
+      subject: "Новая подписка в"
       title: 'Новая подписка'
       name: 'Имя'
       email: 'Email'
@@ -129,7 +131,8 @@ ru:
       event: 'Событие'
       datetime: 'Состоится'
       owner: 'Организатор'
-    photos:
+    photo:
+      subject: "Новые фотографии в"
       title: 'Добавлены новые фотографии'
       event: 'Событие'
       errors:
