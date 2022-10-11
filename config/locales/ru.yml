@@ -147,3 +147,8 @@ ru:
     upload_user: "Загружено пользователем "
   pundit:
     not_authorized: 'Доступ закрыт'
+  omniauth_callbacks:
+    success: 'Вход выполнен через %{kind}.'
+    failure: 'Не удалось войти через %{kind}.'
+  buttons:
+    oauth_log_in: 'Войти через %{provider}'
