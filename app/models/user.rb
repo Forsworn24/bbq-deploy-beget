@@ -22,6 +22,8 @@ class User < ApplicationRecord
     provider = access_token.provider
     uid = access_token.uid
 
+    debugger
+
     where(uid: uid, provider: provider).first_or_create! do |user|
       user.email = email
       user.name = name
