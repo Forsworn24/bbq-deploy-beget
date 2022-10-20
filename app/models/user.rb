@@ -13,33 +13,20 @@ class User < ApplicationRecord
   after_commit :link_subscriptions, on: :create
 
   def self.find_for_github_oauth(access_token)
-    data = access_token.info
-    user = User.where(email: data['email']).first
+    email = access_token.info.email
+    name = access_token.info.name
+    user = where(email: email).first
 
-    # Uncomment the section below if you want users to be created if they don't exist
-    unless user
-        user = User.create(name: data['name'],
-           email: data['email'],
-           password: Devise.friendly_token[0,20]
-        )
+    return user if user.present?
+
+    provider = access_token.provider
+    uid = access_token.uid
+
+    where(uid: uid, provider: provider).first_or_create! do |user|
+      user.email = email
+      user.name = name
+      user.password = Devise.friendly_token.first(16)
     end
-    user
-    # debugger
-
-    # email = access_token.info.email
-    # name = access_token.info.name
-    # user = where(email: email).first
-
-    # return user if user.present?
-
-    # provider = access_token.provider
-    # uid = access_token.uid
-
-    # where(uid: uid, provider: provider).first_or_create! do |user|
-    #   user.email = email
-    #   user.name = name
-    #   user.password = Devise.friendly_token.first(16)
-    # end
   end
 
   private
