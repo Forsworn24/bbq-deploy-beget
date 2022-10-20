@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable,
-    :omniauthable, omniauth_providers: %i[github]
+    :omniauthable, omniauth_providers: %i[github google_oauth2]
 
   has_many :events, dependent: :destroy
   has_many :comments, dependent: :destroy
