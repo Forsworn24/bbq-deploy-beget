@@ -1,5 +1,4 @@
-class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-
+class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksControlle
   def google_oauth2
     handle_auth "Google"
   end
@@ -9,7 +8,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
   
   def handle_auth(kind)
-
     @user = User.find_for_github_oauth(request.env['omniauth.auth'])
 
     if @user.persisted?
