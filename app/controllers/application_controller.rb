@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
 
@@ -10,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:password, :password_confirmation, :current_password])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[password password_confirmation current_password])
   end
 
   def current_user_can_edit?(model)
@@ -18,12 +20,12 @@ class ApplicationController < ActionController::Base
       model.user == current_user || (model.try(:event).present? && model.event.user == current_user)
   end
 
-  def current_user_can_subscribe?(event)
+  def current_user_can_subscribe?(_event)
     @event.user != current_user
   end
 
-  def check_event_subscribe?(event)
-    @event.subscriptions.count > 0 || @event.subscribers.count > 0
+  def check_event_subscribe?(_event)
+    @event.subscriptions.count.positive? || @event.subscribers.count.positive?
   end
 
   def user_can_add_photo?

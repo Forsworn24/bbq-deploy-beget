@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'}
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :subscriptions
   resources :comments
-  
-  root to: "events#index"
+
+  root to: 'events#index'
 
   resources :events do
     resources :comments, only: %i[create destroy]
@@ -16,5 +18,5 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[show edit update]
 
-  get '/events/:event_id/subscriptions', to: redirect('/events/%{event_id}')
+  get '/events/:event_id/subscriptions', to: redirect('/events/%<event_id>s')
 end

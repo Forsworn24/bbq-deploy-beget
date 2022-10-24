@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EventMailer < ApplicationMailer
   def subscription(subscription)
     @email = subscription.user_email

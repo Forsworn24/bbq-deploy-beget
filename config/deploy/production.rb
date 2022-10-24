@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
@@ -8,11 +10,10 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 
 server 'mymegabarbecue.store', user: 'deploy', roles: %w[app db web resque_worker]
-#server 'mymegabarbecue.store', user: 'deploy', roles: %w{app db web}
+# server 'mymegabarbecue.store', user: 'deploy', roles: %w{app db web}
 
 set :resque_environment_task, true
 set :workers, { "#{fetch(:application)}*" => 1 }
-
 
 # role-based syntax
 # ==================
@@ -26,8 +27,6 @@ set :workers, { "#{fetch(:application)}*" => 1 }
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
-
-
 # Configuration
 # =============
 # You can set any configuration variable like in config/deploy.rb
@@ -35,8 +34,6 @@ set :workers, { "#{fetch(:application)}*" => 1 }
 # For available Capistrano configuration variables see the documentation page.
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
-
-
 
 # Custom SSH Options
 # ==================

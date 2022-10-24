@@ -1,18 +1,20 @@
-# config valid for current version and patch releases of Capistrano
-lock "~> 3.17.1"
+# frozen_string_literal: true
 
-set :application, "bbq"
+# config valid for current version and patch releases of Capistrano
+lock '~> 3.17.1'
+
+set :application, 'bbq'
 # set :repo_url, "git@example.com:me/my_repo.git"
 
 # Это имя приложения
-#set :application, 'bege'
+# set :application, 'bege'
 # Это url вашего репозитория, откуда Capistrano
 # будет брать свежие версии исходников
 set :repo_url, 'https://github.com/Forsworn24/bbq-deploy-beget.git'
 # Папка, где будет храниться приложение
 set :deploy_to, '/home/deploy/www'
 
-#set :rvm_map_bins, %w{gem rake ruby rails bundle}
+# set :rvm_map_bins, %w{gem rake ruby rails bundle}
 # Файлы, которые лежат вне репозитория
 append :linked_files, 'config/database.yml', 'config/master.key'
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads'

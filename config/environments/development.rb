@@ -1,4 +1,6 @@
-require "active_support/core_ext/integer/time"
+# frozen_string_literal: true
+
+require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -33,7 +35,7 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :yandex
 
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
@@ -57,7 +59,6 @@ Rails.application.configure do
 
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
-
 
   config.active_job.queue_adapter = :async
   config.active_job.queue_name_prefix = "bbq_#{Rails.env}"

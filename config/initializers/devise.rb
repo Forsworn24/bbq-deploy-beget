@@ -14,7 +14,6 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '5281a08bb15ea7a1e159df5985be17c208856ce677977c65c6239f21dc65c455cb4203ba465016bdf5f51439f51bc43a102a40fb98da32ca2471b09f20500301'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -126,7 +125,6 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '3472693a42e40725d673cdbd9921d1fb7b8c4e1c90b6005386b221c91ae28f23ad4a255fbec28c697bb3c86680d5459fdf61d62520830acc09d332e368b220fa'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -274,10 +272,10 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :github, Rails.application.credentials.dig(:omniauth, :github, :id),
-    Rails.application.credentials.dig(:omniauth, :github, :secret), :scope => 'user,repo,gist'
-  
+                  Rails.application.credentials.dig(:omniauth, :github, :secret), scope: 'user,repo,gist'
+
   config.omniauth :google_oauth2, Rails.application.credentials.dig(:omniauth, :google, :id),
-    Rails.application.credentials.dig(:omniauth, :google, :secret)
+                  Rails.application.credentials.dig(:omniauth, :google, :secret)
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

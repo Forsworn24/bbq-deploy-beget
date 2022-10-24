@@ -1,12 +1,14 @@
-module ApplicationHelper  
+# frozen_string_literal: true
+
+module ApplicationHelper
   def avatar(user)
     if user.avatar.attached?
       user.avatar
     else
-      asset_path("user.png")
+      asset_path('user.png')
     end
   end
-  
+
   def fa_icon(icon_class)
     content_tag 'span', '', class: "fa fa-#{icon_class} text-white bg-secondary p-1 rounded-2"
   end

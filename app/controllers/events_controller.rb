@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: %i[show index]
   before_action :set_event, only: %i[show edit update destroy]
 
   after_action :verify_authorized, only: %i[edit update destroy]
-  
+
   skip_before_action :verify_authenticity_token, only: %i[show]
 
   def index
@@ -14,10 +16,8 @@ class EventsController < ApplicationController
     begin
       authorize @event
     rescue Pundit::NotAuthorizedError
-      if params[:pincode].present?
-        flash.now[:alert] = I18n.t('controllers.events.wrong_pincode')
-      end
-      
+      flash.now[:alert] = I18n.t('controllers.events.wrong_pincode') if params[:pincode].present?
+
       render 'password_form'
     end
 
@@ -31,7 +31,7 @@ class EventsController < ApplicationController
 
   def create
     @event = current_user.events.build(event_params)
-    
+
     if @event.save
       redirect_to @event, notice: I18n.t('controllers.events.created')
     else
