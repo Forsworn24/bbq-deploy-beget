@@ -28,6 +28,7 @@ class User < ApplicationRecord
       user.name = name
       user.avatar.attach(io: image, filename: 'avatar.jpeg')
       user.password = Devise.friendly_token.first(16)
+      image.close
     end
   end
 
