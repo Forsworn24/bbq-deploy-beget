@@ -22,6 +22,8 @@ class User < ApplicationRecord
     provider = access_token.provider
     uid = access_token.uid
 
+    debugger
+
     where(uid: uid, provider: provider).first_or_create! do |user|
       image = URI.parse(access_token.info.image).open
       user.email = email
