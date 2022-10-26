@@ -18,20 +18,40 @@ class User < ApplicationRecord
     email = access_token.info.email
     name = access_token.info.name
     user = where(email: email).first
-
+  
     return user if user.present?
-
+  
     provider = access_token.provider
     uid = access_token.uid
-
-    User.where(uid: uid, provider: provider).first_or_create! do |u|
+  
+    where(uid: uid, provider: provider).first_or_create! do |user|
+      user.email = email
+      user.name = name
       image = URI.parse(access_token.info.image).open
-      u.email = email
-      u.name = name
-      u.avatar.attach(io: image, filename: 'avatar.jpeg')
-      u.password = Devise.friendly_token.first(16)
+      user.avatar.attach(io: image, filename: 'avatar.jpeg')
+      user.password = Devise.friendly_token.first(16)
       image.close
     end
+  end
+
+  # def self.find_for_oauth(access_token)
+  #   email = access_token.info.email
+  #   name = access_token.info.name
+  #   user = where(email: email).first
+
+  #   return user if user.present?
+
+  #   provider = access_token.provider
+  #   uid = access_token.uid
+
+  #   User.where(uid: uid, provider: provider).first_or_create! do |u|
+  #     image = URI.parse(access_token.info.image).open
+  #     u.email = email
+  #     u.name = name
+  #     u.avatar.attach(io: image, filename: 'avatar.jpeg')
+  #     u.password = Devise.friendly_token.first(16)
+  #     image.close
+  #   end
   end
 
   private
