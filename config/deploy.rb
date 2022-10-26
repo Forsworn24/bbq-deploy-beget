@@ -11,6 +11,7 @@ set :application, 'bbq'
 # Это url вашего репозитория, откуда Capistrano
 # будет брать свежие версии исходников
 set :repo_url, 'https://github.com/Forsworn24/bbq-deploy-beget.git'
+# set :repo_url, 'https://github.com/Forsworn24/mymegabarbecue.git'
 # Папка, где будет храниться приложение
 set :deploy_to, '/home/deploy/www'
 

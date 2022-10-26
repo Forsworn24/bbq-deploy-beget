@@ -52,7 +52,7 @@ class User < ApplicationRecord
   #     u.password = Devise.friendly_token.first(16)
   #     image.close
   #   end
-  end
+  # end
 
   private
 
