@@ -27,10 +27,10 @@ class User < ApplicationRecord
     where(uid: uid, provider: provider).first_or_create! do |user|
       user.email = email
       user.name = name
-      image = URI.parse(access_token.info.image).open
+      # image = URI.parse(access_token.info.image).open
       user.avatar.attach(io: image, filename: 'avatar.jpeg')
       user.password = Devise.friendly_token.first(16)
-      image.close
+      # image.close
     end
   end
 
