@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+require 'open-uri'
 
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable,
