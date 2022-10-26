@@ -11,7 +11,7 @@ module Users
     end
 
     def handle_auth(kind)
-      @user = User.find_for_github_oauth(request.env['omniauth.auth'])
+      @user = User.find_for_oauth(request.env['omniauth.auth'])
 
       if @user.persisted?
         flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: kind)

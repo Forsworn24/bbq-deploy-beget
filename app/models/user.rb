@@ -14,10 +14,10 @@ class User < ApplicationRecord
 
   after_commit :link_subscriptions, on: :create
 
-  def self.find_for_github_oauth(access_token)
+  def self.find_for_oauth(access_token)
     email = access_token.info.email
     name = access_token.info.name
-    user = where(email:).first
+    user = where(email: email).first
 
     return user if user.present?
 
