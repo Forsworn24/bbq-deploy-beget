@@ -275,7 +275,8 @@ Devise.setup do |config|
                   Rails.application.credentials.dig(:omniauth, :github, :secret), scope: 'user,public_repo'
 
   config.omniauth :google_oauth2, Rails.application.credentials.dig(:omniauth, :google, :id),
-                  Rails.application.credentials.dig(:omniauth, :google, :secret), { scope: 'email,profile', image_aspect_ratio: 'square', image_size: 50 }
+                  Rails.application.credentials.dig(:omniauth, :google, :secret), scope: 'userinfo.email, userinfo.profile'
+                  # , { scope: 'email,profile', image_aspect_ratio: 'square', image_size: 50 }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
