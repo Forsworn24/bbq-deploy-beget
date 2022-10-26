@@ -24,7 +24,7 @@ class User < ApplicationRecord
     provider = access_token.provider
     uid = access_token.uid
 
-    User.where(uid:, provider:).first_or_create! do |u|
+    User.where(uid: uid, provider: provider).first_or_create! do |u|
       image = URI.parse(access_token.info.image).open
       u.email = email
       u.name = name
