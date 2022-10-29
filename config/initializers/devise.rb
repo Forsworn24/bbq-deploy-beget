@@ -272,7 +272,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :github, Rails.application.credentials.dig(:omniauth, :github, :id),
-                  Rails.application.credentials.dig(:omniauth, :github, :secret), scope: 'user'
+                  Rails.application.credentials.dig(:omniauth, :github, :secret), scope: 'read:user, user:email'
 
   config.omniauth :google_oauth2, Rails.application.credentials.dig(:omniauth, :google, :id),
                   Rails.application.credentials.dig(:omniauth, :google, :secret), scope: 'userinfo.email, userinfo.profile'
